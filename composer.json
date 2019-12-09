@@ -1,0 +1,37 @@
+{
+  "name": "knot-lib/kernel",
+  "description": "Kernel interfaces and objects for kNot Framework.",
+  "keywords": ["PHP","PHP7","kNot Framework"],
+  "homepage": "https://github.com/knot-lib/kernel",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Katsuki Shuto",
+      "email": "stk2k@knot-framework.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "ext-json": "*",
+    "psr/log": "^1.0",
+    "psr/container": "^1.0",
+    "knot-lib/exception-handler": "~0.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.3.0",
+    "php-coveralls/php-coveralls": "^2.0",
+    "mikey179/vfsstream": "1.3.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "KnotLib\\Kernel\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "KnotLib\\Kernel\\Test\\": "test/include/",
+      "KnotLib\\Kernel\\Demo\\": "demo/include/"
+    }
+  }
+}
