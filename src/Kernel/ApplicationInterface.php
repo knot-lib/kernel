@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace KnotLib\Kernel\Kernel;
 
 use KnotLib\Kernel\Module\ModuleFactoryInterface;
@@ -260,8 +262,6 @@ interface ApplicationInterface
      * Handle exception
      *
      * @param Throwable $e
-     *
-     * @return bool
      */
-    public function handleException(Throwable $e) : bool;
+    public function handleException(Throwable $e);
 }

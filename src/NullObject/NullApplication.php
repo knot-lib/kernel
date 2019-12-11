@@ -1,10 +1,13 @@
 <?php
+declare(strict_types=1);
+
 namespace KnotLib\Kernel\NullObject;
+
+use Throwable;
 
 use KnotLib\Kernel\Exception\KernelException;
 use KnotLib\Kernel\Kernel\ApplicationType;
 use KnotLib\Kernel\Module\ModuleFactoryInterface;
-use Throwable;
 
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
@@ -166,9 +169,8 @@ final class NullApplication implements ApplicationInterface
     /**
      * {@inheritDoc}
      */
-    public function handleException(Throwable $e) : bool
+    public function handleException(Throwable $e)
     {
-        return false;
     }
 
     /**
