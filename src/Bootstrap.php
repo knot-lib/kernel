@@ -80,9 +80,7 @@ class Bootstrap
     {
         // if error is handled, do nothing after the handler
         if ($this->app){
-            if ($this->app->handleException($e)){
-                return $this;
-            }
+            $this->app->handleException($e);
         }
 
         if ($this->ex_handler){

@@ -303,19 +303,13 @@ abstract class AbstractApplication implements ApplicationInterface
      * Handle exception
      *
      * @param Throwable $e
-     *
-     * @return bool
      */
-    public function handleException(Throwable $e) : bool
+    public function handleException(Throwable $e)
     {
-        $handled_cnt = 0;
         foreach($this->ex_handlers as $handler)
         {
-            if ($handler->handleException($e)){
-                $handled_cnt ++;
-            }
+            $handler->handleException($e);
         }
-        return $handled_cnt > 0;
     }
 
     /**
