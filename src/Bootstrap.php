@@ -84,9 +84,7 @@ class Bootstrap
         }
 
         if ($this->ex_handler){
-            if (($this->ex_handler)($e)){
-                return $this;
-            }
+            ($this->ex_handler)($e);
         }
 
         // show errors by debugtrace renderer
