@@ -2,6 +2,7 @@
 namespace KnotLib\Kernel\Exception;
 
 use Throwable;
+
 use KnotLib\Exception\KnotPhpException;
 
 class KernelException extends KnotPhpException implements KernelExceptionInterface

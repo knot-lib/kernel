@@ -7,10 +7,6 @@ use Throwable;
 
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
-use KnotLib\Kernel\Kernel\ApplicationType;
-use KnotLib\ExceptionHandler\DebugtraceRenderer\ConsoleDebugtraceRenderer;
-use KnotLib\ExceptionHandler\DebugtraceRenderer\HtmlDebugtraceRenderer;
-use KnotLib\ExceptionHandler\Handler\PrintExceptionHandler;
 
 class Bootstrap
 {
@@ -86,18 +82,6 @@ class Bootstrap
         if ($this->ex_handler){
             ($this->ex_handler)($e);
         }
-
-        // show errors by debugtrace renderer
-        $renderer = null;
-
-        if (!$this->app || $this->app->type()->is(ApplicationType::CLI)){
-            $renderer = new ConsoleDebugtraceRenderer();
-        }
-        else if ($this->app->type()->is(ApplicationType::WEB_APP)){
-            $renderer = new HtmlDebugtraceRenderer();
-        }
-
-        (new PrintExceptionHandler($renderer))->handleException($e);
 
         return $this;
     }
