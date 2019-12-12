@@ -19,6 +19,9 @@ class Bootstrap
     /** @var callable */
     private $ex_handler;
 
+    /** @var array */
+    private $prepared_modules = [];
+
     /**
      * Mount file system
      *
@@ -33,17 +36,40 @@ class Bootstrap
     }
 
     /**
+     * Prepare to install module
+     *
+     * @param string $module
+     *
+     * @return $this
+     */
+    public function prepare(string $module) : self
+    {
+        if (!in_array($module, $this->prepared_modules)){
+            $this->prepared_modules[] = $module;
+        }
+        return $this;
+    }
+
+    /**
      * Start application
      *
      * @param string $app_class
+     * @param callable $app_created_callback
      *
      * @return self
      */
-    public function boot(string $app_class) : self
+    public function boot(string $app_class, callable $app_created_callback = null) : self
     {
         $this->app = $this->fs ? new $app_class($this->fs) : new $app_class;
 
+        if ($app_created_callback){
+            ($app_created_callback)($this->app);
+        }
+
         try{
+            foreach($this->prepared_modules as $module){
+                $this->app->requireModule($module);
+            }
             $this->app->run();
         }
         catch(Throwable $e){

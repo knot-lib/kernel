@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace KnotLib\Kernel\Test\Session;
 
 use KnotLib\Kernel\Request\PhpArrayRequest;

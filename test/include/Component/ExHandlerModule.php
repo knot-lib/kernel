@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace KnotLib\Kernel\Test\Component;
 
 use KnotLib\Kernel\Module\Components;

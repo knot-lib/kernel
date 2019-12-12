@@ -61,6 +61,7 @@ class ModuleB implements ModuleInterface
      */
     public function install(ApplicationInterface $app)
     {
+        echo 'ModuleB is installed.';
     }
 
 }
