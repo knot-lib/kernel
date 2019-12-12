@@ -1,8 +1,6 @@
 <?php
 namespace KnotLib\Kernel\Pipeline;
 
-use Psr\Http\Server\MiddlewareInterface;
-
 use KnotLib\Kernel\Request\RequestInterface;
 use KnotLib\Kernel\Response\ResponseInterface;
 
