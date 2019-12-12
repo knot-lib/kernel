@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel\NullObject;
 
+use Psr\Http\Server\MiddlewareInterface;
+
 use KnotLib\Kernel\Pipeline\PipelineInterface;
-use KnotLib\Kernel\Pipeline\MiddlewareInterface;
 use KnotLib\Kernel\Request\RequestInterface;
 use KnotLib\Kernel\Response\ResponseInterface;
 
