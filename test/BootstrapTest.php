@@ -40,11 +40,11 @@ final class BootstrapTest extends TestCase
                 $this->assertInstanceOf(TestApplication::class, $app);
             });
     }
-    public function testPrepare()
+    public function testPrepareModule()
     {
         ob_start();
         (new Bootstrap())
-            ->prepare(ModuleA::class)
+            ->prepareModule(ModuleA::class)
             ->boot(TestApplication::class);
         $contents = ob_get_clean();
 
@@ -52,8 +52,8 @@ final class BootstrapTest extends TestCase
 
         ob_start();
         (new Bootstrap())
-            ->prepare(ModuleA::class)
-            ->prepare(ModuleB::class)
+            ->prepareModule(ModuleA::class)
+            ->prepareModule(ModuleB::class)
             ->boot(TestApplication::class);
         $contents = ob_get_clean();
 
@@ -61,8 +61,8 @@ final class BootstrapTest extends TestCase
 
         ob_start();
         (new Bootstrap())
-            ->prepare(ModuleB::class)
-            ->prepare(ModuleA::class)
+            ->prepareModule(ModuleB::class)
+            ->prepareModule(ModuleA::class)
             ->boot(TestApplication::class);
         $contents = ob_get_clean();
 
@@ -70,11 +70,39 @@ final class BootstrapTest extends TestCase
 
         ob_start();
         (new Bootstrap())
-            ->prepare(ModuleA::class)
-            ->prepare(ModuleA::class)
+            ->prepareModule(ModuleA::class)
+            ->prepareModule(ModuleA::class)
             ->boot(TestApplication::class);
         $contents = ob_get_clean();
 
         $this->assertEquals('ModuleA is installed.', $contents);
+    }
+    public function testPreparePackage()
+    {
+        ob_start();
+        (new Bootstrap())
+            ->preparePakcage(PackageX::class)
+            ->boot(TestApplication::class);
+        $contents = ob_get_clean();
+
+        $this->assertEquals('ModuleA is installed.ModuleB is installed.', $contents);
+
+        ob_start();
+        (new Bootstrap())
+            ->preparePakcage(PackageY::class)
+            ->boot(TestApplication::class);
+        $contents = ob_get_clean();
+
+        $this->assertEquals('ModuleB is installed.ModuleC is installed.', $contents);
+
+        ob_start();
+        (new Bootstrap())
+            ->preparePakcage(PackageX::class)
+            ->preparePakcage(PackageY::class)
+            ->boot(TestApplication::class);
+        $contents = ob_get_clean();
+
+        $this->assertEquals('ModuleA is installed.ModuleB is installed.ModuleC is installed.', $contents);
+
     }
 }

@@ -22,6 +22,9 @@ class Bootstrap
     /** @var array */
     private $prepared_modules = [];
 
+    /** @var array */
+    private $prepared_packages = [];
+
     /**
      * Mount file system
      *
@@ -38,14 +41,29 @@ class Bootstrap
     /**
      * Prepare to install module
      *
-     * @param string $module
+     * @param string $module_class
      *
      * @return $this
      */
-    public function prepare(string $module) : self
+    public function prepareModule(string $module_class) : self
     {
-        if (!in_array($module, $this->prepared_modules)){
-            $this->prepared_modules[] = $module;
+        if (!in_array($module_class, $this->prepared_modules)){
+            $this->prepared_modules[] = $module_class;
+        }
+        return $this;
+    }
+
+    /**
+     * Prepare to install module
+     *
+     * @param string $package_class
+     *
+     * @return $this
+     */
+    public function preparePakcage(string $package_class) : self
+    {
+        if (!in_array($package_class, $this->prepared_packages)){
+            $this->prepared_packages[] = $package_class;
         }
         return $this;
     }
@@ -67,6 +85,9 @@ class Bootstrap
         }
 
         try{
+            foreach($this->prepared_packages as $package){
+                $this->app->requirePackage($package);
+            }
             foreach($this->prepared_modules as $module){
                 $this->app->requireModule($module);
             }
