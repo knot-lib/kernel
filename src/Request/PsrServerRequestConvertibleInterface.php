@@ -5,12 +5,12 @@ namespace KnotLib\Kernel\Request;
 
 use Psr\Http\Message\ServerRequestInterface;
 
-interface ServerRequestConvertibleInterface
+interface PsrServerRequestConvertibleInterface
 {
     /**
      * Convert to PSR Server Request
      *
      * @return ServerRequestInterface
      */
-    public function convertToServerRequest() : ServerRequestInterface;
+    public function convertToPsrServerRequest() : ServerRequestInterface;
 }
