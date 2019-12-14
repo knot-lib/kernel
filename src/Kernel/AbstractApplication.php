@@ -5,8 +5,8 @@ namespace KnotLib\Kernel\Kernel;
 
 use Throwable;
 
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 use KnotLib\Kernel\Cache\CacheInterface;
 use KnotLib\Kernel\Di\DiContainerInterface;
@@ -67,7 +67,7 @@ abstract class AbstractApplication implements ApplicationInterface
     /** @var DiContainerInterface */
     private $di;
 
-    /** @var RequestInterface */
+    /** @var ServerRequestInterface */
     private $request;
 
     /** @var ResponseInterface */
@@ -279,7 +279,7 @@ abstract class AbstractApplication implements ApplicationInterface
      *
      * @throws
      */
-    private function executePipeline(PipelineInterface $pipeline, RequestInterface $request) : ResponseInterface
+    private function executePipeline(PipelineInterface $pipeline, ServerRequestInterface $request) : ResponseInterface
     {
         if ($request instanceof NullRequest) {
             throw new ComponentNotInstalledException(Components::REQUEST);
@@ -370,11 +370,11 @@ abstract class AbstractApplication implements ApplicationInterface
     /**
      * Set/get request
      *
-     * @param RequestInterface $request
+     * @param ServerRequestInterface $request
      *
-     * @return RequestInterface
+     * @return ServerRequestInterface
      */
-    public function request(RequestInterface $request = null) : RequestInterface
+    public function request(ServerRequestInterface $request = null) : ServerRequestInterface
     {
         if ($request){
             $this->request = $request;

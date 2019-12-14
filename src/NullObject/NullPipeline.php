@@ -3,10 +3,11 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel\NullObject;
 
-use KnotLib\Kernel\Pipeline\PipelineInterface;
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
+
+use KnotLib\Kernel\Pipeline\PipelineInterface;
 
 final class NullPipeline implements PipelineInterface
 {
@@ -25,11 +26,11 @@ final class NullPipeline implements PipelineInterface
     /**
      * Execure pipeline
      *
-     * @param RequestInterface $request
+     * @param ServerRequestInterface $request
      *
      * @return ResponseInterface
      */
-    public function run(RequestInterface $request) : ResponseInterface
+    public function run(ServerRequestInterface $request) : ResponseInterface
     {
         return null;
     }

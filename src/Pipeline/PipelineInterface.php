@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel\Pipeline;
 
-use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -21,9 +21,9 @@ interface PipelineInterface
     /**
      * Execure pipeline
      *
-     * @param RequestInterface $request
+     * @param ServerRequestInterface $request
      *
      * @return ResponseInterface
      */
-    public function run(RequestInterface $request) : ResponseInterface;
+    public function run(ServerRequestInterface $request) : ResponseInterface;
 }

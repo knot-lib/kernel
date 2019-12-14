@@ -5,7 +5,7 @@ namespace KnotLib\Kernel\Kernel;
 
 use Throwable;
 
-use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 use KnotLib\Kernel\Module\ModuleFactoryInterface;
@@ -76,11 +76,11 @@ interface ApplicationInterface
     /**
      * Set/get request
      *
-     * @param RequestInterface $request
+     * @param ServerRequestInterface $request
      *
-     * @return RequestInterface
+     * @return ServerRequestInterface
      */
-    public function request(RequestInterface $request = null) : RequestInterface;
+    public function request(ServerRequestInterface $request = null) : ServerRequestInterface;
 
     /**
      * Set/get response
