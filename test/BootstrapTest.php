@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel\Test;
 
+use Throwable;
+
 use KnotLib\Exception\KnotPhpException;
 use KnotLib\Kernel\Bootstrap;
 use PHPUnit\Framework\TestCase;
@@ -33,7 +35,7 @@ final class BootstrapTest extends TestCase
             });
 
         (new Bootstrap())
-            ->handleException(function(KnotPhpException $e){
+            ->handleException(function(Throwable $e){
                 echo $e->getMessage();
             })
             ->boot(TestApplication::class, function($app){

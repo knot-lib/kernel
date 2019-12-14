@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace KnotLib\Kernel\NullObject;
 
 use KnotLib\Kernel\Pipeline\PipelineInterface;
-use KnotLib\Kernel\Pipeline\MiddlewareInterface;
-use KnotLib\Kernel\Request\RequestInterface;
-use KnotLib\Kernel\Response\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Server\MiddlewareInterface;
 
 final class NullPipeline implements PipelineInterface
 {

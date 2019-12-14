@@ -1,8 +1,11 @@
 <?php
+declare(strict_types=1);
+
 namespace KnotLib\Kernel\Pipeline;
 
-use KnotLib\Kernel\Request\RequestInterface;
-use KnotLib\Kernel\Response\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Message\ResponseInterface;
 
 interface PipelineInterface
 {

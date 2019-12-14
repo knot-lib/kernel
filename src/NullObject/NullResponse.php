@@ -3,20 +3,27 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel\NullObject;
 
-use KnotLib\Kernel\Response\ResponseInterface;
-use KnotLib\Kernel\Response\StreamInterface;
+use Nyholm\Psr7\MessageTrait;
+use Psr\Http\Message\ResponseInterface;
 
 final class NullResponse implements ResponseInterface
 {
-    /**
-     * Get/set body stream
-     *
-     * @param StreamInterface $stream
-     *
-     * @return StreamInterface
-     */
-    public function body(StreamInterface $stream = null) : StreamInterface
+    use MessageTrait;
+
+    /** @var int */
+    private $statusCode;
+
+    public function getStatusCode()
     {
-        return null;
+        return 400;
+    }
+
+    public function withStatus($code, $reasonPhrase = '')
+    {
+    }
+
+    public function getReasonPhrase()
+    {
+        return '';
     }
 }
