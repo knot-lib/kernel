@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace KnotLib\Kernel\NullObject;
 
 use KnotLib\Kernel\Responder\ResponderInterface;
-use KnotLib\Kernel\Response\ResponseInterface;
+use Psr\Http\Message\ResponseInterface;
 
 final class NullResponder implements ResponderInterface
 {

@@ -1,8 +1,9 @@
 <?php
-namespace Calgamo\Module\Exception;
+declare(strict_types=1);
+
+namespace KnotLib\Kernel\Exception;
 
 use Throwable;
-use KnotLib\Kernel\Exception\KernelException;
 
 class PackageRequireException extends KernelException
 {

@@ -3,9 +3,12 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel\Kernel;
 
-use KnotLib\Kernel\Module\ModuleFactoryInterface;
 use Throwable;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+use KnotLib\Kernel\Module\ModuleFactoryInterface;
 use KnotLib\Kernel\Exception\ApplicationExecutionException;
 use KnotLib\Kernel\ExceptionHandler\ExceptionHandlerInterface;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
@@ -13,8 +16,6 @@ use KnotLib\Kernel\Logger\LoggerInterface;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Router\RouterInterface;
 use KnotLib\Kernel\Di\DiContainerInterface;
-use KnotLib\Kernel\Request\RequestInterface;
-use KnotLib\Kernel\Response\ResponseInterface;
 use KnotLib\Kernel\Pipeline\PipelineInterface;
 use KnotLib\Kernel\Cache\CacheInterface;
 use KnotLib\Kernel\Session\SessionInterface;

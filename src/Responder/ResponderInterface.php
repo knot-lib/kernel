@@ -1,7 +1,7 @@
 <?php
 namespace KnotLib\Kernel\Responder;
 
-use KnotLib\Kernel\Response\ResponseInterface;
+use Psr\Http\Message\ResponseInterface;
 
 interface ResponderInterface
 {
