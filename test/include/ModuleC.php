@@ -17,7 +17,7 @@ class ModuleC implements ModuleInterface
      *
      * @param string $name
      */
-    public function __construct(string $name)
+    public function __construct(string $name = 'Peter')
     {
         $this->name = $name;
     }

@@ -17,7 +17,7 @@ class ModuleB implements ModuleInterface
      *
      * @param int $price
      */
-    public function __construct(int $price)
+    public function __construct(int $price = 0)
     {
         $this->price = $price;
     }
