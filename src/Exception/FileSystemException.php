@@ -5,7 +5,7 @@ namespace KnotLib\Kernel\Exception;
 
 use Throwable;
 
-class FileSystemException extends SessionException
+class FileSystemException extends KernelException
 {
     /**
      * construct

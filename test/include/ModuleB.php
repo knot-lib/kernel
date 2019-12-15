@@ -9,13 +9,17 @@ use KnotLib\Kernel\Kernel\ApplicationInterface;
 
 class ModuleB implements ModuleInterface
 {
+    /** @var int */
+    private $price;
+
     /**
-     * ModuleInterface constructor.
+     * ModuleB constructor.
      *
-     * Module must not have any constructor parameters.
+     * @param int $price
      */
-    public function __construct()
+    public function __construct(int $price)
     {
+        $this->price = $price;
     }
 
     /**
@@ -64,4 +68,8 @@ class ModuleB implements ModuleInterface
         echo 'ModuleB is installed.';
     }
 
+    public function __toString()
+    {
+        return 'This module\'s price is: $' . $this->price;
+    }
 }

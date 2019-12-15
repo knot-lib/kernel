@@ -4,13 +4,6 @@ namespace KnotLib\Kernel\Module;
 abstract class ComponentModule implements ModuleInterface
 {
     /**
-     * ComponentModule constructor.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Declare dependency on another modules
      *
      * @return array
@@ -19,5 +12,4 @@ abstract class ComponentModule implements ModuleInterface
     {
         return [];
     }
-
 }

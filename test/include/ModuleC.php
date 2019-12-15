@@ -9,13 +9,17 @@ use KnotLib\Kernel\Kernel\ApplicationInterface;
 
 class ModuleC implements ModuleInterface
 {
+    /** @var string */
+    private $name;
+
     /**
-     * ModuleInterface constructor.
+     * ModuleC constructor.
      *
-     * Module must not have any constructor parameters.
+     * @param string $name
      */
-    public function __construct()
+    public function __construct(string $name)
     {
+        $this->name = $name;
     }
 
     /**
@@ -65,4 +69,8 @@ class ModuleC implements ModuleInterface
         echo 'ModuleC is installed.';
     }
 
+    public function __toString()
+    {
+        return 'My name is: ' . $this->name;
+    }
 }
