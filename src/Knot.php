@@ -23,8 +23,8 @@ class Knot
     /** @var ExceptionHandlerInterface */
     private $ex_handler;
 
-    /** @var ModuleFactoryInterface */
-    private $module_factory;
+    /** @var ModuleFactoryInterface[] */
+    private $module_factories;
 
     /** @var array */
     private $prepared_modules;
@@ -103,10 +103,10 @@ class Knot
     public function withModuleFactory($module_factory) : self
     {
         if (is_callable($module_factory)){
-            $this->module_factory = new CallableModuleFactory($module_factory);
+            $this->module_factories[] = new CallableModuleFactory($module_factory);
         }
         else if ($module_factory instanceof ModuleFactoryInterface){
-            $this->module_factory = $module_factory;
+            $this->module_factories[] = $module_factory;
         }
         return $this;
     }
@@ -138,8 +138,10 @@ class Knot
                     $this->app->requireModule($module);
                 }
             }
-            if ($this->module_factory){
-                $this->app->setModuleFactory($this->module_factory);
+            if ($this->module_factories){
+                foreach($this->module_factories as $factory) {
+                    $this->app->addModuleFactory($factory);
+                }
             }
             $this->app->run();
         }
