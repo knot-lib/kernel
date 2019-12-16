@@ -105,6 +105,5 @@ final class KnotTest extends TestCase
         $contents = ob_get_clean();
 
         $this->assertEquals('ModuleA is installed.ModuleB is installed.ModuleC is installed.', $contents);
-
     }
 }

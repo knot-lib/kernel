@@ -9,8 +9,6 @@ interface ExceptionHandlerInterface
      * Handle exception
      *
      * @param Throwable $e
-     *
-     * @return bool
      */
-    public function handleException(Throwable $e) : bool;
+    public function handleException(Throwable $e);
 }

@@ -3,8 +3,12 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel;
 
+use KnotLib\Kernel\ExceptionHandler\CallableExceptionHandler;
+use KnotLib\Kernel\Module\CallableModuleFactory;
 use Throwable;
 
+use KnotLib\Kernel\ExceptionHandler\ExceptionHandlerInterface;
+use KnotLib\Kernel\Module\ModuleFactoryInterface;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 
@@ -16,14 +20,17 @@ class Knot
     /** @var ApplicationInterface */
     private $app;
 
-    /** @var callable */
+    /** @var ExceptionHandlerInterface */
     private $ex_handler;
 
-    /** @var array */
-    private $prepared_modules = [];
+    /** @var ModuleFactoryInterface */
+    private $module_factory;
 
     /** @var array */
-    private $prepared_packages = [];
+    private $prepared_modules;
+
+    /** @var array */
+    private $prepared_packages;
 
     /**
      * Mount file system
@@ -69,6 +76,42 @@ class Knot
     }
 
     /**
+     * Set global exception handler
+     *
+     * @param callable|ExceptionHandlerInterface $ex_handler
+     *
+     * @return self
+     */
+    public function withExceptionHandler($ex_handler) : self
+    {
+        if (is_callable($ex_handler)){
+            $this->ex_handler = new CallableExceptionHandler($ex_handler);
+        }
+        else if ($ex_handler instanceof ExceptionHandlerInterface){
+            $this->ex_handler = $ex_handler;
+        }
+        return $this;
+    }
+
+    /**
+     * Set module factory
+     *
+     * @param callable|ModuleFactoryInterface $module_factory
+     *
+     * @return $this
+     */
+    public function withModuleFactory($module_factory) : self
+    {
+        if (is_callable($module_factory)){
+            $this->module_factory = new CallableModuleFactory($module_factory);
+        }
+        else if ($module_factory instanceof ModuleFactoryInterface){
+            $this->module_factory = $module_factory;
+        }
+        return $this;
+    }
+
+    /**
      * Start application
      *
      * @param string $app_class
@@ -85,30 +128,24 @@ class Knot
         }
 
         try{
-            foreach($this->prepared_packages as $package){
-                $this->app->requirePackage($package);
+            if ($this->prepared_packages){
+                foreach($this->prepared_packages as $package){
+                    $this->app->requirePackage($package);
+                }
             }
-            foreach($this->prepared_modules as $module){
-                $this->app->requireModule($module);
+            if ($this->prepared_modules){
+                foreach($this->prepared_modules as $module){
+                    $this->app->requireModule($module);
+                }
+            }
+            if ($this->module_factory){
+                $this->app->setModuleFactory($this->module_factory);
             }
             $this->app->run();
         }
         catch(Throwable $e){
             $this->handleExceptionInternal($e);
         }
-        return $this;
-    }
-
-    /**
-     * Set global exception handler
-     *
-     * @param callable $ex_handler
-     *
-     * @return self
-     */
-    public function withExceptionHandler(callable $ex_handler) : self
-    {
-        $this->ex_handler = $ex_handler;
         return $this;
     }
 
@@ -127,7 +164,7 @@ class Knot
         }
 
         if ($this->ex_handler){
-            ($this->ex_handler)($e);
+            $this->ex_handler->handleException($e);
         }
 
         return $this;
