@@ -8,7 +8,7 @@ use Throwable;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 
-class Bootstrap
+class Knot
 {
     /** @var FileSystemInterface */
     private $fs;
@@ -32,7 +32,7 @@ class Bootstrap
      *
      * @return self
      */
-    public function mount(FileSystemInterface $fs) : self
+    public function withFileSystem(FileSystemInterface $fs) : self
     {
         $this->fs = $fs;
         return $this;
@@ -45,7 +45,7 @@ class Bootstrap
      *
      * @return $this
      */
-    public function prepareModule(string $module_class) : self
+    public function withModule(string $module_class) : self
     {
         if (!in_array($module_class, $this->prepared_modules)){
             $this->prepared_modules[] = $module_class;
@@ -60,7 +60,7 @@ class Bootstrap
      *
      * @return $this
      */
-    public function preparePakcage(string $package_class) : self
+    public function withPakcage(string $package_class) : self
     {
         if (!in_array($package_class, $this->prepared_packages)){
             $this->prepared_packages[] = $package_class;
@@ -106,7 +106,7 @@ class Bootstrap
      *
      * @return self
      */
-    public function handleException(callable $ex_handler) : self
+    public function withExceptionHandler(callable $ex_handler) : self
     {
         $this->ex_handler = $ex_handler;
         return $this;
