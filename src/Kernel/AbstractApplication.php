@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel\Kernel;
 
+use KnotLib\Kernel\Exception\InterfaceNotImplementedException;
 use Throwable;
 
 use Psr\Http\Message\ResponseInterface;
@@ -12,7 +13,6 @@ use KnotLib\Kernel\Cache\CacheInterface;
 use KnotLib\Kernel\Di\DiContainerInterface;
 use KnotLib\Kernel\EventStream\EventStreamInterface;
 use KnotLib\Kernel\Exception\ComponentNotInstalledException;
-use KnotLib\Kernel\Exception\PackageRequireException;
 use KnotLib\Kernel\ExceptionHandler\ExceptionHandlerInterface;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\Logger\LoggerInterface;
@@ -122,11 +122,7 @@ abstract class AbstractApplication implements ApplicationInterface
     }
 
     /**
-     * Require a module
-     *
-     * @param string $module_class
-     *
-     * @return ApplicationInterface
+     * {@inheritDoc}
      */
     public function requireModule(string $module_class) : ApplicationInterface
     {
@@ -137,28 +133,58 @@ abstract class AbstractApplication implements ApplicationInterface
     }
 
     /**
-     * Require a package
+     * {@inheritDoc}
+     */
+    public function unrequireModule(string $module_class) : ApplicationInterface
+    {
+        $key = array_search($module_class, $this->required_modules);
+        if ($key !== false){
+            unset($this->required_modules[$key]);
+            $this->required_modules = array_values($this->required_modules);
+        }
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
      *
-     * @param string $package_class
-     *
-     * @return ApplicationInterface
-     *
-     * @throws PackageRequireException
+     * @throws InterfaceNotImplementedException
      */
     public function requirePackage(string $package_class) : ApplicationInterface
     {
         if (!in_array(PackageInterface::class, class_implements($package_class))){
-            throw new PackageRequireException('Specified package does not implements PackageInterface: ' . $package_class, $package_class);
+            throw new InterfaceNotImplementedException($package_class, PackageInterface::class);
         }
 
         $module_list = call_user_func([$package_class, 'getModuleList']);
-        if (!is_array($module_list)){
-            throw new PackageRequireException('Failed to call getModuleList: ' . $package_class, $package_class);
-        }
 
         foreach($module_list as $module){
             if (!in_array($module, $this->required_modules)){
                 $this->required_modules[] = $module;
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @throws InterfaceNotImplementedException
+     */
+    public function unrequirePackage(string $package_class) : ApplicationInterface
+    {
+        if (!in_array(PackageInterface::class, class_implements($package_class))){
+            throw new InterfaceNotImplementedException($package_class, PackageInterface::class);
+        }
+
+        $module_list = call_user_func([$package_class, 'getModuleList']);
+
+        foreach($module_list as $module){
+            $key = array_search($module, $this->required_modules);
+            if ($key !== false){
+                unset($this->required_modules[$key]);
+                $this->required_modules = array_values($this->required_modules);
             }
         }
 

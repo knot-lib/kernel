@@ -46,19 +46,83 @@ final class AbstractApplicationTest extends TestCase
         $app->requireModule(ModuleB::class);
         $this->assertSame([ModuleA::class, ModuleB::class], $app->getRequiredModules());
     }
-    public function testListRequireModules()
+    public function testUnrequireModule()
     {
         $app = new TestApplication(new TestFileSystem());
-        $this->assertSame([], $app->getRequiredModules());
+
+        $app->unrequireModule(ModuleA::class);
+
+        $this->assertEquals([], $app->getRequiredModules());
 
         $app = new TestApplication(new TestFileSystem());
+
         $app->requireModule(ModuleA::class);
-        $this->assertSame([ModuleA::class], $app->getRequiredModules());
+        $app->unrequireModule(ModuleA::class);
+
+        $this->assertEquals([], $app->getRequiredModules());
 
         $app = new TestApplication(new TestFileSystem());
+
         $app->requireModule(ModuleA::class);
         $app->requireModule(ModuleB::class);
-        $this->assertSame([ModuleA::class, ModuleB::class], $app->getRequiredModules());
+        $app->unrequireModule(ModuleA::class);
+
+        $this->assertEquals([ModuleB::class], $app->getRequiredModules());
+
+        $app = new TestApplication(new TestFileSystem());
+
+        $app->requireModule(ModuleA::class);
+        $app->requireModule(ModuleB::class);
+        $app->unrequireModule(ModuleB::class);
+
+        $this->assertEquals([ModuleA::class], $app->getRequiredModules());
+    }
+
+    /**
+     * @throws
+     */
+    public function testRequirePackage()
+    {
+        $app = new TestApplication(new TestFileSystem());
+
+        $app->requirePackage(PackageX::class);
+
+        $this->assertEquals([ModuleA::class, ModuleB::class,], $app->getRequiredModules());
+
+        $app = new TestApplication(new TestFileSystem());
+
+        $app->requirePackage(PackageY::class);
+
+        $this->assertEquals([ModuleB::class, ModuleC::class,], $app->getRequiredModules());
+    }
+
+    /**
+     * @throws
+     */
+    public function testUnrequirePackage()
+    {
+        $app = new TestApplication(new TestFileSystem());
+
+        $app->requirePackage(PackageX::class);
+        $app->unrequirePackage(PackageX::class);
+
+        $this->assertEquals([], $app->getRequiredModules());
+
+        $app = new TestApplication(new TestFileSystem());
+
+        $app->requirePackage(PackageX::class);
+        $app->requirePackage(PackageY::class);
+        $app->unrequirePackage(PackageY::class);
+
+        $this->assertEquals([ModuleA::class, ], $app->getRequiredModules());
+
+        $app = new TestApplication(new TestFileSystem());
+
+        $app->requireModule(ModuleC::class);
+        $app->requirePackage(PackageX::class);
+        $app->unrequirePackage(PackageX::class);
+
+        $this->assertEquals([ModuleC::class], $app->getRequiredModules());
     }
     public function testGetInstalledModules()
     {

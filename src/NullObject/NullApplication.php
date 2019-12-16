@@ -63,7 +63,23 @@ final class NullApplication implements ApplicationInterface
     /**
      * {@inheritDoc}
      */
+    public function unrequireModule(string $module_class) : ApplicationInterface
+    {
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function requirePackage(string $package_class) : ApplicationInterface
+    {
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function unrequirePackage(string $package_class) : ApplicationInterface
     {
         return $this;
     }

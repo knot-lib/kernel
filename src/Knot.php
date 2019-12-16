@@ -30,7 +30,13 @@ class Knot
     private $prepared_modules;
 
     /** @var array */
+    private $unprepared_modules;
+
+    /** @var array */
     private $prepared_packages;
+
+    /** @var array */
+    private $unprepared_packages;
 
     /**
      * Mount file system
@@ -46,7 +52,7 @@ class Knot
     }
 
     /**
-     * Prepare to install module
+     * Prepare module
      *
      * @param string $module_class
      *
@@ -61,7 +67,22 @@ class Knot
     }
 
     /**
-     * Prepare to install module
+     * Unrepare module
+     *
+     * @param string $module_class
+     *
+     * @return $this
+     */
+    public function withoutModule(string $module_class) : self
+    {
+        if (!$this->unprepared_modules || !in_array($module_class, $this->unprepared_modules)){
+            $this->unprepared_modules[] = $module_class;
+        }
+        return $this;
+    }
+
+    /**
+     * Prepare package
      *
      * @param string $package_class
      *
@@ -71,6 +92,21 @@ class Knot
     {
         if (!$this->prepared_packages || !in_array($package_class, $this->prepared_packages)){
             $this->prepared_packages[] = $package_class;
+        }
+        return $this;
+    }
+
+    /**
+     * Unprepare package
+     *
+     * @param string $package_class
+     *
+     * @return $this
+     */
+    public function withoutPakcage(string $package_class) : self
+    {
+        if (!$this->unprepared_packages || !in_array($package_class, $this->unprepared_packages)){
+            $this->unprepared_packages[] = $package_class;
         }
         return $this;
     }
@@ -133,9 +169,19 @@ class Knot
                     $this->app->requirePackage($package);
                 }
             }
+            if ($this->unprepared_packages){
+                foreach($this->unprepared_packages as $package){
+                    $this->app->unrequirePackage($package);
+                }
+            }
             if ($this->prepared_modules){
                 foreach($this->prepared_modules as $module){
                     $this->app->requireModule($module);
+                }
+            }
+            if ($this->unprepared_modules){
+                foreach($this->unprepared_modules as $module){
+                    $this->app->unrequireModule($module);
                 }
             }
             if ($this->module_factories){

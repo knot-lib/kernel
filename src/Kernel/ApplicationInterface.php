@@ -155,6 +155,15 @@ interface ApplicationInterface
     public function requireModule(string $module_class) : self;
 
     /**
+     * Unrequire a module
+     *
+     * @param string $module_class
+     *
+     * @return ApplicationInterface
+     */
+    public function unrequireModule(string $module_class) : self;
+
+    /**
      * Require a package
      *
      * @param string $package_class
@@ -162,6 +171,15 @@ interface ApplicationInterface
      * @return ApplicationInterface
      */
     public function requirePackage(string $package_class) : self;
+
+    /**
+     * Unrequire a package
+     *
+     * @param string $package_class
+     *
+     * @return ApplicationInterface
+     */
+    public function unrequirePackage(string $package_class) : self;
 
     /**
      * Get list of required modules
