@@ -11,6 +11,7 @@ final class CallableModuleFactoryTest extends TestCase
 {
     public function testCreateModule()
     {
+        $app = new TestApplication();
         $factory = new CallableModuleFactory(function(string $module_class){
             switch($module_class){
                 case ModuleB::class:
@@ -21,17 +22,17 @@ final class CallableModuleFactoryTest extends TestCase
             return null;
         });
 
-        $module = $factory->createModule(ModuleB::class);
+        $module = $factory->createModule(ModuleB::class, $app);
 
         $this->assertInstanceOf(ModuleInterface::class, $module);
         $this->assertEquals('This module\'s price is: $20000', "$module");
 
-        $module = $factory->createModule(ModuleC::class);
+        $module = $factory->createModule(ModuleC::class, $app);
 
         $this->assertInstanceOf(ModuleInterface::class, $module);
         $this->assertEquals('My name is: Smith', "$module");
 
-        $module = $factory->createModule(ModuleA::class);
+        $module = $factory->createModule(ModuleA::class, $app);
 
         $this->assertNull($module);
     }

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel\Module;
 
+use KnotLib\Kernel\Kernel\ApplicationInterface;
+
 final class CallableModuleFactory implements ModuleFactoryInterface
 {
     /** @var callable */
@@ -21,9 +23,9 @@ final class CallableModuleFactory implements ModuleFactoryInterface
     /**
      * {@inheritDoc}
      */
-    public function createModule(string $module_class)
+    public function createModule(string $module_class, ApplicationInterface $app)
     {
-        $ret = ($this->callable)($module_class);
+        $ret = ($this->callable)($module_class, $app);
         if ($ret instanceof ModuleInterface){
             return $ret;
         }

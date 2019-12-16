@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace KnotLib\Kernel\Module;
 
 use KnotLib\Kernel\Exception\InterfaceNotImplementedException;
+use KnotLib\Kernel\Kernel\ApplicationInterface;
 
 final class CascadedModuleFactory implements ModuleFactoryInterface
 {
@@ -30,11 +31,11 @@ final class CascadedModuleFactory implements ModuleFactoryInterface
     /**
      * {@inheritDoc}
      */
-    public function createModule(string $module_class)
+    public function createModule(string $module_class, ApplicationInterface $app)
     {
         foreach($this->child_factories as $factory)
         {
-            $ret = $factory->createModule($module_class);
+            $ret = $factory->createModule($module_class, $app);
             if ($ret instanceof ModuleInterface){
                 return $ret;
             }

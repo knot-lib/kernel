@@ -14,22 +14,23 @@ final class CascadedModuleFactoryTest extends TestCase
      */
     public function testCreateModule()
     {
+        $app = new TestApplication();
         $factory = new CascadedModuleFactory([
             new ModuleB_Factory(),
             new ModuleC_Factory()
         ]);
 
-        $module = $factory->createModule(ModuleB::class);
+        $module = $factory->createModule(ModuleB::class, $app);
 
         $this->assertInstanceOf(ModuleInterface::class, $module);
         $this->assertEquals('This module\'s price is: $10000', "$module");
 
-        $module = $factory->createModule(ModuleC::class);
+        $module = $factory->createModule(ModuleC::class, $app);
 
         $this->assertInstanceOf(ModuleInterface::class, $module);
         $this->assertEquals('My name is: David', "$module");
 
-        $module = $factory->createModule(ModuleA::class);
+        $module = $factory->createModule(ModuleA::class, $app);
 
         $this->assertNull($module);
     }
