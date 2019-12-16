@@ -49,7 +49,7 @@ abstract class AbstractApplication implements ApplicationInterface
     /** @var string[] */
     private $resolved_modules = [];
 
-    /** @var string[] */
+    /** @var ModuleFactoryInterface[] */
     private $module_factories;
 
     /** @var ModuleInterface[] */
@@ -216,7 +216,7 @@ abstract class AbstractApplication implements ApplicationInterface
     /**
      * Returns module factory classes
      *
-     * @return array
+     * @return ModuleFactoryInterface[]
      */
     protected function getModuleFactories() : array
     {
