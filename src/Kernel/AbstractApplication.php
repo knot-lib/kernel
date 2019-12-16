@@ -232,7 +232,7 @@ abstract class AbstractApplication implements ApplicationInterface
      */
     public function addModuleFactory(ModuleFactoryInterface $module_factory) : ApplicationInterface
     {
-        $this->module_factories = $module_factory;
+        $this->module_factories[] = $module_factory;
 
         return $this;
     }
