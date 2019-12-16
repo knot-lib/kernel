@@ -17,7 +17,6 @@ use KnotLib\Kernel\ExceptionHandler\ExceptionHandlerInterface;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\Logger\LoggerInterface;
 use KnotLib\Kernel\Module\Components;
-use KnotLib\Kernel\Module\ModuleFactoryInterface;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Module\PackageInterface;
 use KnotLib\Kernel\NullObject\NullCache;
@@ -49,8 +48,8 @@ abstract class AbstractApplication implements ApplicationInterface
     /** @var string[] */
     private $resolved_modules = [];
 
-    /** @var ModuleFactoryInterface */
-    private $module_factory;
+    /** @var string[] */
+    private $module_factories;
 
     /** @var ModuleInterface[] */
     private $installed_modules = [];
@@ -214,25 +213,25 @@ abstract class AbstractApplication implements ApplicationInterface
     }
 
     /**
-     * Get module factory
+     * Returns module factory classes
      *
-     * @return ModuleFactoryInterface|null
+     * @return array
      */
-    public function getModuleFactory()
+    protected function getModuleFactories() : array
     {
-        return $this->module_factory;
+        return $this->module_factories;
     }
 
     /**
-     * Set module factory
+     * Add module factory
      *
-     * @param ModuleFactoryInterface $module_factory
+     * @param string $module_factory_class
      *
      * @return ApplicationInterface
      */
-    public function setModuleFactory(ModuleFactoryInterface $module_factory) : ApplicationInterface
+    public function addModuleFactory(string $module_factory_class) : ApplicationInterface
     {
-        $this->module_factory = $module_factory;
+        $this->module_factories = $module_factory_class;
 
         return $this;
     }

@@ -5,18 +5,17 @@ namespace KnotLib\Kernel\NullObject;
 
 use Throwable;
 
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
 use KnotLib\Kernel\Exception\KernelException;
 use KnotLib\Kernel\Kernel\ApplicationType;
-use KnotLib\Kernel\Module\ModuleFactoryInterface;
-
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\ExceptionHandler\ExceptionHandlerInterface;
 use KnotLib\Kernel\Logger\LoggerInterface;
 use KnotLib\Kernel\Router\RouterInterface;
 use KnotLib\Kernel\Di\DiContainerInterface;
-use KnotLib\Kernel\Request\RequestInterface;
-use KnotLib\Kernel\Response\ResponseInterface;
 use KnotLib\Kernel\Pipeline\PipelineInterface;
 use KnotLib\Kernel\Cache\CacheInterface;
 use KnotLib\Kernel\Session\SessionInterface;
@@ -117,7 +116,7 @@ final class NullApplication implements ApplicationInterface
     /**
      * {@inheritDoc}
      */
-    public function setModuleFactory(ModuleFactoryInterface $module_factory) : ApplicationInterface
+    public function addModuleFactory(string $module_factory_class) : ApplicationInterface
     {
         return $this;
     }
@@ -200,7 +199,7 @@ final class NullApplication implements ApplicationInterface
     /**
      * {@inheritDoc}
      */
-    public function request(RequestInterface $request = null) : RequestInterface
+    public function request(ServerRequestInterface $request = null) : ServerRequestInterface
     {
         return new NullRequest();
     }

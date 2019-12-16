@@ -8,7 +8,6 @@ use Throwable;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-use KnotLib\Kernel\Module\ModuleFactoryInterface;
 use KnotLib\Kernel\Exception\ApplicationExecutionException;
 use KnotLib\Kernel\ExceptionHandler\ExceptionHandlerInterface;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
@@ -201,20 +200,13 @@ interface ApplicationInterface
     public function setResolvedModules(array $modules);
 
     /**
-     * Get module factory
+     * Add module factory
      *
-     * @return ModuleFactoryInterface|null
-     */
-    public function getModuleFactory();
-
-    /**
-     * Set module factory
-     *
-     * @param ModuleFactoryInterface $module_factory
+     * @param string $module_factory_class
      *
      * @return ApplicationInterface
      */
-    public function setModuleFactory(ModuleFactoryInterface $module_factory) : self;
+    public function addModuleFactory(string $module_factory_class) : self;
 
     /**
      * Configure application
