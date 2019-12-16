@@ -54,7 +54,7 @@ class Knot
      */
     public function withModule(string $module_class) : self
     {
-        if (!in_array($module_class, $this->prepared_modules)){
+        if (!$this->prepared_modules || !in_array($module_class, $this->prepared_modules)){
             $this->prepared_modules[] = $module_class;
         }
         return $this;
@@ -69,7 +69,7 @@ class Knot
      */
     public function withPakcage(string $package_class) : self
     {
-        if (!in_array($package_class, $this->prepared_packages)){
+        if (!$this->prepared_packages || !in_array($package_class, $this->prepared_packages)){
             $this->prepared_packages[] = $package_class;
         }
         return $this;
