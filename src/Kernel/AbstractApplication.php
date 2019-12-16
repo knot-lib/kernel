@@ -19,6 +19,7 @@ use KnotLib\Kernel\Logger\LoggerInterface;
 use KnotLib\Kernel\Module\Components;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Module\PackageInterface;
+use KnotLib\Kernel\Module\ModuleFactoryInterface;
 use KnotLib\Kernel\NullObject\NullCache;
 use KnotLib\Kernel\NullObject\NullDi;
 use KnotLib\Kernel\NullObject\NullEventStream;
@@ -225,13 +226,13 @@ abstract class AbstractApplication implements ApplicationInterface
     /**
      * Add module factory
      *
-     * @param string $module_factory_class
+     * @param ModuleFactoryInterface $module_factory
      *
      * @return ApplicationInterface
      */
-    public function addModuleFactory(string $module_factory_class) : ApplicationInterface
+    public function addModuleFactory(ModuleFactoryInterface $module_factory) : ApplicationInterface
     {
-        $this->module_factories = $module_factory_class;
+        $this->module_factories = $module_factory;
 
         return $this;
     }

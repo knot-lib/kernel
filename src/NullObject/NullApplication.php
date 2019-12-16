@@ -14,6 +14,7 @@ use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\ExceptionHandler\ExceptionHandlerInterface;
 use KnotLib\Kernel\Logger\LoggerInterface;
+use KnotLib\Kernel\Module\ModuleFactoryInterface;
 use KnotLib\Kernel\Router\RouterInterface;
 use KnotLib\Kernel\Di\DiContainerInterface;
 use KnotLib\Kernel\Pipeline\PipelineInterface;
@@ -116,7 +117,7 @@ final class NullApplication implements ApplicationInterface
     /**
      * {@inheritDoc}
      */
-    public function addModuleFactory(string $module_factory_class) : ApplicationInterface
+    public function addModuleFactory(ModuleFactoryInterface $module_factory) : ApplicationInterface
     {
         return $this;
     }

@@ -13,6 +13,7 @@ use KnotLib\Kernel\ExceptionHandler\ExceptionHandlerInterface;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\Logger\LoggerInterface;
 use KnotLib\Kernel\Module\ModuleInterface;
+use KnotLib\Kernel\Module\ModuleFactoryInterface;
 use KnotLib\Kernel\Router\RouterInterface;
 use KnotLib\Kernel\Di\DiContainerInterface;
 use KnotLib\Kernel\Pipeline\PipelineInterface;
@@ -202,11 +203,11 @@ interface ApplicationInterface
     /**
      * Add module factory
      *
-     * @param string $module_factory_class
+     * @param ModuleFactoryInterface $module_factory
      *
      * @return ApplicationInterface
      */
-    public function addModuleFactory(string $module_factory_class) : self;
+    public function addModuleFactory(ModuleFactoryInterface $module_factory) : self;
 
     /**
      * Configure application
