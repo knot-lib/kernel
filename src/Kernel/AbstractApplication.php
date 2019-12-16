@@ -50,7 +50,7 @@ abstract class AbstractApplication implements ApplicationInterface
     private $resolved_modules = [];
 
     /** @var ModuleFactoryInterface[] */
-    private $module_factories;
+    private $module_factories = [];
 
     /** @var ModuleInterface[] */
     private $installed_modules = [];
