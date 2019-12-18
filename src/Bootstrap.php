@@ -164,6 +164,8 @@ class Bootstrap
         }
 
         try{
+            $this->app->configure();
+
             if ($this->prepared_packages){
                 foreach($this->prepared_packages as $package){
                     $this->app->requirePackage($package);
@@ -189,6 +191,7 @@ class Bootstrap
                     $this->app->addModuleFactory($factory);
                 }
             }
+
             $this->app->run();
         }
         catch(Throwable $e){
