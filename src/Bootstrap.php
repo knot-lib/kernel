@@ -12,7 +12,7 @@ use KnotLib\Kernel\Module\ModuleFactoryInterface;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 
-class Knot
+class Bootstrap
 {
     /** @var FileSystemInterface */
     private $fs;

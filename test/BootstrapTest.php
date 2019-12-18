@@ -6,15 +6,15 @@ namespace KnotLib\Kernel\Test;
 use Throwable;
 
 use KnotLib\Exception\KnotPhpException;
-use KnotLib\Kernel\Knot;
+use KnotLib\Kernel\Bootstrap;
 use PHPUnit\Framework\TestCase;
 
-final class KnotTest extends TestCase
+final class BootstrapTest extends TestCase
 {
     public function testHandleException()
     {
         ob_start();
-        (new Knot())
+        (new Bootstrap())
             ->withExceptionHandler(function(KnotPhpException $e){
                 echo $e->getMessage();
             })
@@ -26,7 +26,7 @@ final class KnotTest extends TestCase
     }
     public function testBoot()
     {
-        (new Knot())
+        (new Bootstrap())
             ->withExceptionHandler(function(KnotPhpException $e){
                 echo $e->getMessage();
             })
@@ -34,7 +34,7 @@ final class KnotTest extends TestCase
                 $this->assertInstanceOf(BadApplication::class, $app);
             });
 
-        (new Knot())
+        (new Bootstrap())
             ->withExceptionHandler(function(Throwable $e){
                 echo $e->getMessage();
             })
@@ -45,7 +45,7 @@ final class KnotTest extends TestCase
     public function testPrepareModule()
     {
         ob_start();
-        (new Knot())
+        (new Bootstrap())
             ->withModule(ModuleA::class)
             ->boot(TestApplication::class);
         $contents = ob_get_clean();
@@ -53,7 +53,7 @@ final class KnotTest extends TestCase
         $this->assertEquals('ModuleA is installed.', $contents);
 
         ob_start();
-        (new Knot())
+        (new Bootstrap())
             ->withModule(ModuleA::class)
             ->withModule(ModuleB::class)
             ->boot(TestApplication::class);
@@ -62,7 +62,7 @@ final class KnotTest extends TestCase
         $this->assertEquals('ModuleA is installed.ModuleB is installed.', $contents);
 
         ob_start();
-        (new Knot())
+        (new Bootstrap())
             ->withModule(ModuleB::class)
             ->withModule(ModuleA::class)
             ->boot(TestApplication::class);
@@ -71,7 +71,7 @@ final class KnotTest extends TestCase
         $this->assertEquals('ModuleB is installed.ModuleA is installed.', $contents);
 
         ob_start();
-        (new Knot())
+        (new Bootstrap())
             ->withModule(ModuleA::class)
             ->withModule(ModuleA::class)
             ->boot(TestApplication::class);
@@ -82,7 +82,7 @@ final class KnotTest extends TestCase
     public function testPreparePackage()
     {
         ob_start();
-        (new Knot())
+        (new Bootstrap())
             ->withPakcage(PackageX::class)
             ->boot(TestApplication::class);
         $contents = ob_get_clean();
@@ -90,7 +90,7 @@ final class KnotTest extends TestCase
         $this->assertEquals('ModuleA is installed.ModuleB is installed.', $contents);
 
         ob_start();
-        (new Knot())
+        (new Bootstrap())
             ->withPakcage(PackageY::class)
             ->boot(TestApplication::class);
         $contents = ob_get_clean();
@@ -98,7 +98,7 @@ final class KnotTest extends TestCase
         $this->assertEquals('ModuleB is installed.ModuleC is installed.', $contents);
 
         ob_start();
-        (new Knot())
+        (new Bootstrap())
             ->withPakcage(PackageX::class)
             ->withPakcage(PackageY::class)
             ->boot(TestApplication::class);
