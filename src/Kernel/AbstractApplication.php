@@ -279,6 +279,11 @@ abstract class AbstractApplication implements ApplicationInterface
     /**
      * {@inheritDoc}
      */
+    public abstract function installModule(string $module_class) : ApplicationInterface;
+
+    /**
+     * {@inheritDoc}
+     */
     public abstract function installModules(array $modules) : ApplicationInterface;
 
     /**

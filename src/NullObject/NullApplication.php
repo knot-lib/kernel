@@ -158,6 +158,14 @@ final class NullApplication implements ApplicationInterface
 
     /**
      * {@inheritDoc}
+     */
+    public function installModule(string $module_class) : ApplicationInterface
+    {
+        throw new KernelException('Invalid operation on null application');
+    }
+
+    /**
+     * {@inheritDoc}
      *
      * @throws
      */

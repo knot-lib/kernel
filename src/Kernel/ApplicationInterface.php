@@ -242,6 +242,17 @@ interface ApplicationInterface
     public function install() : self;
 
     /**
+     * Install a module
+     *
+     * @param string $module_class
+     *
+     * @return ApplicationInterface
+     *
+     * @throws
+     */
+    public function installModule(string $module_class) : self;
+
+    /**
      * Install modules
      *
      * @param array $modules
