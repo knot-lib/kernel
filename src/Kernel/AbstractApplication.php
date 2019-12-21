@@ -91,6 +91,9 @@ abstract class AbstractApplication implements ApplicationInterface
     /** @var TemplateEngineInterface */
     private $template_engine;
 
+    /** @var bool */
+    private $configured = false;
+
     /**
      * AbstractApplication constructor.
      *
@@ -268,7 +271,16 @@ abstract class AbstractApplication implements ApplicationInterface
      */
     public function configure() : ApplicationInterface
     {
+        $this->configured = true;
         return $this;
+    }
+
+    /**
+     * Set configured flag
+     */
+    protected function setConfigured()
+    {
+        $this->configured = true;
     }
 
     /**
@@ -288,6 +300,10 @@ abstract class AbstractApplication implements ApplicationInterface
      */
     public function run() : ApplicationInterface
     {
+        if (!$this->configured){
+            $this->configure();
+        }
+
         // install required modules
         $this->install();
 
