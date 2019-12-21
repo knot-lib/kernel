@@ -276,14 +276,6 @@ abstract class AbstractApplication implements ApplicationInterface
     }
 
     /**
-     * Set configured flag
-     */
-    protected function setConfigured()
-    {
-        $this->configured = true;
-    }
-
-    /**
      * {@inheritDoc}
      */
     public abstract function install() : ApplicationInterface;
