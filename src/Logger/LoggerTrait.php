@@ -25,14 +25,17 @@ trait LoggerTrait
      * write alert log
      *
      * @param string $message
+     * @param array $context
      */
-    public function emergency(string $message)
+    public function emergency(string $message, array $context = null)
     {
-        list($file, $line) = Util::caller(1);
-        $context = [
-            'file' => $file,
-            'line' => $line,
-        ];
+        if (!$context){
+            list($file, $line) = Util::caller(1);
+            $context = [
+                'file' => $file,
+                'line' => $line,
+            ];
+        }
         $this->getLogger()->channel($this->getChannelId())->emergency($message, $context);
     }
 
@@ -40,14 +43,17 @@ trait LoggerTrait
      * write alert log
      *
      * @param string $message
+     * @param array $context
      */
-    public function alert(string $message)
+    public function alert(string $message, array $context = null)
     {
-        list($file, $line) = Util::caller(1);
-        $context = [
-            'file' => $file,
-            'line' => $line,
-        ];
+        if (!$context){
+            list($file, $line) = Util::caller(1);
+            $context = [
+                'file' => $file,
+                'line' => $line,
+            ];
+        }
         $this->getLogger()->channel($this->getChannelId())->alert($message, $context);
     }
 
@@ -55,14 +61,17 @@ trait LoggerTrait
      * write critical log
      *
      * @param string $message
+     * @param array $context
      */
-    public function critical(string $message)
+    public function critical(string $message, array $context = null)
     {
-        list($file, $line) = Util::caller(1);
-        $context = [
-            'file' => $file,
-            'line' => $line,
-        ];
+        if (!$context){
+            list($file, $line) = Util::caller(1);
+            $context = [
+                'file' => $file,
+                'line' => $line,
+            ];
+        }
         $this->getLogger()->channel($this->getChannelId())->critical($message, $context);
     }
 
@@ -70,14 +79,17 @@ trait LoggerTrait
      * write error log
      *
      * @param string $message
+     * @param array $context
      */
-    public function error(string $message)
+    public function error(string $message, array $context = null)
     {
-        list($file, $line) = Util::caller(1);
-        $context = [
-            'file' => $file,
-            'line' => $line,
-        ];
+        if (!$context){
+            list($file, $line) = Util::caller(1);
+            $context = [
+                'file' => $file,
+                'line' => $line,
+            ];
+        }
         $this->getLogger()->channel($this->getChannelId())->error($message, $context);
     }
 
@@ -85,14 +97,17 @@ trait LoggerTrait
      * write warning log
      *
      * @param string $message
+     * @param array $context
      */
-    public function warning(string $message)
+    public function warning(string $message, array $context = null)
     {
-        list($file, $line) = Util::caller(1);
-        $context = [
-            'file' => $file,
-            'line' => $line,
-        ];
+        if (!$context){
+            list($file, $line) = Util::caller(1);
+            $context = [
+                'file' => $file,
+                'line' => $line,
+            ];
+        }
         $this->getLogger()->channel($this->getChannelId())->warning($message, $context);
     }
 
@@ -100,14 +115,17 @@ trait LoggerTrait
      * write notice log
      *
      * @param string $message
+     * @param array $context
      */
-    public function notice(string $message)
+    public function notice(string $message, array $context = null)
     {
-        list($file, $line) = Util::caller(1);
-        $context = [
-            'file' => $file,
-            'line' => $line,
-        ];
+        if (!$context){
+            list($file, $line) = Util::caller(1);
+            $context = [
+                'file' => $file,
+                'line' => $line,
+            ];
+        }
         $this->getLogger()->channel($this->getChannelId())->notice($message, $context);
     }
 
@@ -115,14 +133,17 @@ trait LoggerTrait
      * write info log
      *
      * @param string $message
+     * @param array $context
      */
-    public function info(string $message)
+    public function info(string $message, array $context = null)
     {
-        list($file, $line) = Util::caller(1);
-        $context = [
-            'file' => $file,
-            'line' => $line,
-        ];
+        if (!$context){
+            list($file, $line) = Util::caller(1);
+            $context = [
+                'file' => $file,
+                'line' => $line,
+            ];
+        }
         $this->getLogger()->channel($this->getChannelId())->info($message, $context);
     }
 
@@ -130,14 +151,17 @@ trait LoggerTrait
      * write debug log
      *
      * @param string $message
+     * @param array $context
      */
-    public function debug(string $message)
+    public function debug(string $message, array $context = null)
     {
-        list($file, $line) = Util::caller(1);
-        $context = [
-            'file' => $file,
-            'line' => $line,
-        ];
+        if (!$context){
+            list($file, $line) = Util::caller(1);
+            $context = [
+                'file' => $file,
+                'line' => $line,
+            ];
+        }
         $this->getLogger()->channel($this->getChannelId())->debug($message, $context);
     }
 
