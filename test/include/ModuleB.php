@@ -39,7 +39,7 @@ class ModuleB implements ModuleInterface
      *
      * @return array
      */
-    public static function requiredComponents() : array
+    public static function requiredComponentTypes() : array
     {
         return [
             ComponentTypes::EX_HANDLER,
@@ -55,7 +55,7 @@ class ModuleB implements ModuleInterface
      */
     public static function declareComponentType() : string
     {
-        return ComponentTypes::MODULE;
+        return ComponentTypes::APPLICATION;
     }
 
     /**

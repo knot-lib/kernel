@@ -16,9 +16,9 @@ interface ModuleInterface
     /**
      * Declare dependency on components
      *
-     * @return array
+     * @return array       array of ComponentTypes
      */
-    public static function requiredComponents() : array;
+    public static function requiredComponentTypes() : array;
 
     /**
      * Declare component type of this module
