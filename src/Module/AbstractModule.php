@@ -37,7 +37,7 @@ abstract class AbstractModule implements ModuleInterface
      */
     public static function declareComponentType() : string
     {
-        return Components::MODULE;
+        return ComponentTypes::MODULE;
     }
 
 }

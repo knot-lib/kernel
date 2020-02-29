@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel\Test\Component;
 
-use KnotLib\Kernel\Module\Components;
+use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 
@@ -46,7 +46,7 @@ class ExHandlerModule implements ModuleInterface
      */
     public static function declareComponentType() : string
     {
-        return Components::EX_HANDLER;
+        return ComponentTypes::EX_HANDLER;
     }
 
     /**

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel\Test\Component;
 
-use KnotLib\Kernel\Module\Components;
+use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 
@@ -37,8 +37,8 @@ class LoggerModule implements ModuleInterface
     public static function requiredComponents() : array
     {
         return [
-            Components::EVENTSTREAM,
-            Components::EX_HANDLER,
+            ComponentTypes::EVENTSTREAM,
+            ComponentTypes::EX_HANDLER,
         ];
     }
 
@@ -49,7 +49,7 @@ class LoggerModule implements ModuleInterface
      */
     public static function declareComponentType() : string
     {
-        return Components::LOGGER;
+        return ComponentTypes::LOGGER;
     }
 
     /**

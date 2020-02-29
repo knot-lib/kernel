@@ -16,7 +16,7 @@ use KnotLib\Kernel\Exception\ComponentNotInstalledException;
 use KnotLib\Kernel\ExceptionHandler\ExceptionHandlerInterface;
 use KnotLib\Kernel\FileSystem\FileSystemInterface;
 use KnotLib\Kernel\Logger\LoggerInterface;
-use KnotLib\Kernel\Module\Components;
+use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Module\PackageInterface;
 use KnotLib\Kernel\Module\ModuleFactoryInterface;
@@ -316,10 +316,10 @@ abstract class AbstractApplication implements ApplicationInterface
     private function executePipeline(PipelineInterface $pipeline, ServerRequestInterface $request) : ResponseInterface
     {
         if ($request instanceof NullRequest) {
-            throw new ComponentNotInstalledException(Components::REQUEST);
+            throw new ComponentNotInstalledException(ComponentTypes::REQUEST);
         }
         if ($pipeline instanceof NullPipeline) {
-            throw new ComponentNotInstalledException(Components::PIPELINE);
+            throw new ComponentNotInstalledException(ComponentTypes::PIPELINE);
         }
         return $pipeline->run($request);
     }
