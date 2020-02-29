@@ -29,15 +29,4 @@ abstract class AbstractModule implements ModuleInterface
     {
         return [];
     }
-
-    /**
-     * Declare component type of this module
-     *
-     * @return string
-     */
-    public static function declareComponentType() : string
-    {
-        return ComponentTypes::MODULE;
-    }
-
 }
