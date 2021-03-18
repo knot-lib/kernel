@@ -8,6 +8,12 @@ use Throwable;
 use KnotLib\Exception\KnotPhpException;
 use KnotLib\Kernel\Bootstrap;
 use PHPUnit\Framework\TestCase;
+use KnotLib\Kernel\Test\Classes\BadApplication;
+use KnotLib\Kernel\Test\Classes\TestApplication;
+use KnotLib\Kernel\Test\Classes\ModuleA;
+use KnotLib\Kernel\Test\Classes\ModuleB;
+use KnotLib\Kernel\Test\Classes\PackageX;
+use KnotLib\Kernel\Test\Classes\PackageY;
 
 final class BootstrapTest extends TestCase
 {

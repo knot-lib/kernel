@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test\Component;
+namespace KnotLib\Kernel\Test\Classes;
 
 use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 
-class EventStreamModule implements ModuleInterface
+class ModuleA implements ModuleInterface
 {
     /**
      * ModuleInterface constructor.
@@ -25,8 +25,7 @@ class EventStreamModule implements ModuleInterface
      */
     public static function requiredModules() : array
     {
-        return [
-        ];
+        return [];
     }
 
     /**
@@ -38,6 +37,8 @@ class EventStreamModule implements ModuleInterface
     {
         return [
             ComponentTypes::EX_HANDLER,
+            ComponentTypes::LOGGER,
+            ComponentTypes::EVENTSTREAM,
         ];
     }
 
@@ -48,7 +49,7 @@ class EventStreamModule implements ModuleInterface
      */
     public static function declareComponentType() : string
     {
-        return ComponentTypes::EVENTSTREAM;
+        return ComponentTypes::APPLICATION;
     }
 
     /**
@@ -58,6 +59,7 @@ class EventStreamModule implements ModuleInterface
      */
     public function install(ApplicationInterface $app)
     {
+        echo 'ModuleA is installed.';
     }
 
 }

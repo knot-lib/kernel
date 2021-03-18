@@ -1,25 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test;
+namespace KnotLib\Kernel\Test\Classes;
 
 use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 
-class ModuleC implements ModuleInterface
+class ModuleB implements ModuleInterface
 {
-    /** @var string */
-    private $name;
+    /** @var int */
+    private $price;
 
     /**
-     * ModuleC constructor.
+     * ModuleB constructor.
      *
-     * @param string $name
+     * @param int $price
      */
-    public function __construct(string $name = 'Peter')
+    public function __construct(int $price = 0)
     {
-        $this->name = $name;
+        $this->price = $price;
     }
 
     /**
@@ -31,7 +31,6 @@ class ModuleC implements ModuleInterface
     {
         return [
             ModuleA::class,
-            ModuleB::class,
         ];
     }
 
@@ -66,11 +65,11 @@ class ModuleC implements ModuleInterface
      */
     public function install(ApplicationInterface $app)
     {
-        echo 'ModuleC is installed.';
+        echo 'ModuleB is installed.';
     }
 
     public function __toString()
     {
-        return 'My name is: ' . $this->name;
+        return 'This module\'s price is: $' . $this->price;
     }
 }

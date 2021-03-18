@@ -1,11 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test;
+namespace KnotLib\Kernel\Test\Module;
 
 use KnotLib\Kernel\Module\CallableModuleFactory;
 use KnotLib\Kernel\Module\ModuleInterface;
 use PHPUnit\Framework\TestCase;
+use KnotLib\Kernel\Test\Classes\TestApplication;
+use KnotLib\Kernel\Test\Classes\ModuleA;
+use KnotLib\Kernel\Test\Classes\ModuleB;
+use KnotLib\Kernel\Test\Classes\ModuleC;
 
 final class CallableModuleFactoryTest extends TestCase
 {

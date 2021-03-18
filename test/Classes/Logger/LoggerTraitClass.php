@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test\Logger;
+namespace KnotLib\Kernel\Test\Classes\Logger;
 
 use KnotLib\Kernel\Logger\EchoLogger;
 use KnotLib\Kernel\Logger\LoggerInterface;

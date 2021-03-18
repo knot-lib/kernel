@@ -1,33 +1,33 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test;
+namespace KnotLib\Kernel\Test\Classes;
 
-use KnotLib\Exception\KnotPhpException;
 use KnotLib\Kernel\Kernel\AbstractApplication;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 use KnotLib\Kernel\Kernel\ApplicationType;
+use KnotLib\Kernel\Module\ModuleInterface;
 
-final class BadApplication extends AbstractApplication
+final class TestApplication extends AbstractApplication
 {
     public static function type(): ApplicationType
     {
         return ApplicationType::of(ApplicationType::CLI);
     }
 
-    /**
-     * @return ApplicationInterface
-     * @throws KnotPhpException
-     */
     public function install(): ApplicationInterface
     {
-        throw new KnotPhpException('something is wrong.');
-        /** @noinspection PhpUnreachableStatementInspection */
+        foreach($this->getRequiredModules() as $module){
+            $this->installModule($module);
+        }
         return $this;
     }
 
     public function installModule(string $module_class): ApplicationInterface
     {
+        /** @var ModuleInterface $module */
+        $module = new $module_class();
+        $module->install($this);
         $this->addInstalledModule($module_class);
         return $this;
     }

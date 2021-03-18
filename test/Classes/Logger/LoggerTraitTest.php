@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test\Session;
+namespace KnotLib\Kernel\Test\Classes\Logger;
 
-use KnotLib\Kernel\Test\Logger\LoggerTraitClass;
 use PHPUnit\Framework\TestCase;
 
 class LoggerTraitTest extends TestCase

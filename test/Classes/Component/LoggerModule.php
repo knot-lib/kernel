@@ -1,25 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test;
+namespace KnotLib\Kernel\Test\Classes\Component;
 
 use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 
-class ModuleB implements ModuleInterface
+class LoggerModule implements ModuleInterface
 {
-    /** @var int */
-    private $price;
-
     /**
-     * ModuleB constructor.
+     * ModuleInterface constructor.
      *
-     * @param int $price
+     * Module must not have any constructor parameters.
      */
-    public function __construct(int $price = 0)
+    public function __construct()
     {
-        $this->price = $price;
     }
 
     /**
@@ -30,7 +26,6 @@ class ModuleB implements ModuleInterface
     public static function requiredModules() : array
     {
         return [
-            ModuleA::class,
         ];
     }
 
@@ -42,9 +37,8 @@ class ModuleB implements ModuleInterface
     public static function requiredComponentTypes() : array
     {
         return [
-            ComponentTypes::EX_HANDLER,
-            ComponentTypes::LOGGER,
             ComponentTypes::EVENTSTREAM,
+            ComponentTypes::EX_HANDLER,
         ];
     }
 
@@ -55,7 +49,7 @@ class ModuleB implements ModuleInterface
      */
     public static function declareComponentType() : string
     {
-        return ComponentTypes::APPLICATION;
+        return ComponentTypes::LOGGER;
     }
 
     /**
@@ -65,11 +59,6 @@ class ModuleB implements ModuleInterface
      */
     public function install(ApplicationInterface $app)
     {
-        echo 'ModuleB is installed.';
     }
 
-    public function __toString()
-    {
-        return 'This module\'s price is: $' . $this->price;
-    }
 }

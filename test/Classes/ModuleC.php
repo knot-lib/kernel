@@ -1,21 +1,25 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test\Component;
+namespace KnotLib\Kernel\Test\Classes;
 
 use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 
-class ExHandlerModule implements ModuleInterface
+class ModuleC implements ModuleInterface
 {
+    /** @var string */
+    private $name;
+
     /**
-     * ModuleInterface constructor.
+     * ModuleC constructor.
      *
-     * Module must not have any constructor parameters.
+     * @param string $name
      */
-    public function __construct()
+    public function __construct(string $name = 'Peter')
     {
+        $this->name = $name;
     }
 
     /**
@@ -26,6 +30,8 @@ class ExHandlerModule implements ModuleInterface
     public static function requiredModules() : array
     {
         return [
+            ModuleA::class,
+            ModuleB::class,
         ];
     }
 
@@ -36,7 +42,11 @@ class ExHandlerModule implements ModuleInterface
      */
     public static function requiredComponentTypes() : array
     {
-        return [];
+        return [
+            ComponentTypes::EX_HANDLER,
+            ComponentTypes::LOGGER,
+            ComponentTypes::EVENTSTREAM,
+        ];
     }
 
     /**
@@ -46,7 +56,7 @@ class ExHandlerModule implements ModuleInterface
      */
     public static function declareComponentType() : string
     {
-        return ComponentTypes::EX_HANDLER;
+        return ComponentTypes::APPLICATION;
     }
 
     /**
@@ -56,6 +66,11 @@ class ExHandlerModule implements ModuleInterface
      */
     public function install(ApplicationInterface $app)
     {
+        echo 'ModuleC is installed.';
     }
 
+    public function __toString()
+    {
+        return 'My name is: ' . $this->name;
+    }
 }

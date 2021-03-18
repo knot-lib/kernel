@@ -1,18 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test;
+namespace KnotLib\Kernel\Test\Kernel;
 
 use Throwable;
 
 use PHPUnit\Framework\TestCase;
 
 use KnotLib\Kernel\NullObject\NullFileSystem;
-use KnotLib\Kernel\Test\Component\ExHandlerModule;
-
 use KnotLib\Kernel\Kernel\ApplicationInterface;
-use KnotLib\Kernel\Test\Component\LoggerModule;
-use KnotLib\Kernel\Test\Component\EventStreamModule;
+use KnotLib\Kernel\Test\Classes\Component\LoggerModule;
+use KnotLib\Kernel\Test\Classes\Component\EventStreamModule;
+use KnotLib\Kernel\Test\Classes\Component\ExHandlerModule;
+use KnotLib\Kernel\Test\Classes\TestApplication;
+use KnotLib\Kernel\Test\Classes\TestFileSystem;
+use KnotLib\Kernel\Test\Classes\ModuleA;
+use KnotLib\Kernel\Test\Classes\ModuleB;
+use KnotLib\Kernel\Test\Classes\ModuleC;
+use KnotLib\Kernel\Test\Classes\PackageX;
+use KnotLib\Kernel\Test\Classes\PackageY;
 
 final class AbstractApplicationTest extends TestCase
 {

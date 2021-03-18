@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test;
+namespace KnotLib\Kernel\Test\Classes;
 
 use KnotLib\Kernel\Module\PackageInterface;
 

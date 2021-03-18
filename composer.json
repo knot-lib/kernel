@@ -34,8 +34,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "KnotLib\\Kernel\\Test\\": "test/include/",
-      "KnotLib\\Kernel\\Demo\\": "demo/include/"
+      "KnotLib\\Kernel\\Test\\": "test/"
     }
   }
 }

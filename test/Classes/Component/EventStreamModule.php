@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test\Component;
+namespace KnotLib\Kernel\Test\Classes\Component;
 
 use KnotLib\Kernel\Module\ComponentTypes;
 use KnotLib\Kernel\Module\ModuleInterface;
 use KnotLib\Kernel\Kernel\ApplicationInterface;
 
-class LoggerModule implements ModuleInterface
+class EventStreamModule implements ModuleInterface
 {
     /**
      * ModuleInterface constructor.
@@ -37,7 +37,6 @@ class LoggerModule implements ModuleInterface
     public static function requiredComponentTypes() : array
     {
         return [
-            ComponentTypes::EVENTSTREAM,
             ComponentTypes::EX_HANDLER,
         ];
     }
@@ -49,7 +48,7 @@ class LoggerModule implements ModuleInterface
      */
     public static function declareComponentType() : string
     {
-        return ComponentTypes::LOGGER;
+        return ComponentTypes::EVENTSTREAM;
     }
 
     /**
