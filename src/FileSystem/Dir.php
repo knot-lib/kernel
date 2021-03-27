@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace KnotLib\Kernel\FileSystem;
 
-final class Dir
+class Dir
 {
     const TMP          = 1;
     const CACHE        = 2;
