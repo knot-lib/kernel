@@ -21,15 +21,11 @@ class Dir
     const USER_DIR_BASE    = 100;
 
     /**
-     * Returns string expression of directory id
-     *
-     * @param int $dir
-     *
-     * @return string
+     * @return string[]
      */
-    public static function toString(int $dir) : string
+    public static function getDirMap() : array
     {
-        $map = [
+        return [
             self::TMP => 'TMP',
             self::CACHE => 'CACHE',
             self::LOGS => 'LOGS',
@@ -43,6 +39,18 @@ class Dir
             self::WEBROOT => 'WEBROOT',
             self::PLUGIN => 'PLUGIN',
         ];
+    }
+
+    /**
+     * Returns string expression of directory id
+     *
+     * @param int $dir
+     *
+     * @return string
+     */
+    public static function toString(int $dir) : string
+    {
+        $map = self::getDirMap();
         return $map[$dir] ?? '';
     }
 }
