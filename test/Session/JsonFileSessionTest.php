@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test\Session;
+namespace knotlib\kernel\test\Session;
 
-use KnotLib\Kernel\Exception\JsonFileSessionException;
-use KnotLib\Kernel\Session\JsonFileSessionBucket;
+use knotlib\kernel\exception\JsonFileSessionException;
+use knotlib\kernel\session\JsonFileSessionBucket;
 use Exception;
 
-use KnotLib\Kernel\Session\JsonFileSession;
+use knotlib\kernel\session\JsonFileSession;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
@@ -70,7 +70,7 @@ class JsonFileSessionTest extends TestCase
             $this->fail();
         }
         catch(Exception $e){
-            $expected = 'file_get_contents(vfs://root/not_existing.file) failed: file_get_contents(vfs://root/not_existing.file): failed to open stream: "org\bovigo\vfs\vfsStreamWrapper::stream_open" call failed';
+            $expected = 'file_get_contents(vfs://root/not_existing.file) failed: file_get_contents(vfs://root/not_existing.file): Failed to open stream: "org\bovigo\vfs\vfsStreamWrapper::stream_open" call failed';
             $this->assertEquals($expected, $e->getMessage());
         }
     }

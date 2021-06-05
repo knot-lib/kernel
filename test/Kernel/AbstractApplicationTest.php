@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test\Kernel;
+namespace knotlib\kernel\test\Kernel;
 
 use Throwable;
 
 use PHPUnit\Framework\TestCase;
 
-use KnotLib\Kernel\NullObject\NullFileSystem;
-use KnotLib\Kernel\Kernel\ApplicationInterface;
-use KnotLib\Kernel\Test\Classes\Component\LoggerModule;
-use KnotLib\Kernel\Test\Classes\Component\EventStreamModule;
-use KnotLib\Kernel\Test\Classes\Component\ExHandlerModule;
-use KnotLib\Kernel\Test\Classes\TestApplication;
-use KnotLib\Kernel\Test\Classes\TestFileSystem;
-use KnotLib\Kernel\Test\Classes\ModuleA;
-use KnotLib\Kernel\Test\Classes\ModuleB;
-use KnotLib\Kernel\Test\Classes\ModuleC;
-use KnotLib\Kernel\Test\Classes\PackageX;
-use KnotLib\Kernel\Test\Classes\PackageY;
+use knotlib\kernel\nullobject\NullFileSystem;
+use knotlib\kernel\kernel\ApplicationInterface;
+use knotlib\kernel\test\classes\component\LoggerModule;
+use knotlib\kernel\test\classes\component\EventStreamModule;
+use knotlib\kernel\test\classes\component\ExHandlerModule;
+use knotlib\kernel\test\classes\TestApplication;
+use knotlib\kernel\test\classes\TestFileSystem;
+use knotlib\kernel\test\classes\ModuleA;
+use knotlib\kernel\test\classes\ModuleB;
+use knotlib\kernel\test\classes\ModuleC;
+use knotlib\kernel\test\classes\PackageX;
+use knotlib\kernel\test\classes\PackageY;
 
 final class AbstractApplicationTest extends TestCase
 {

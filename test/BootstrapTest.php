@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test;
+namespace knotlib\kernel\test;
 
 use Throwable;
 
-use KnotLib\Exception\KnotPhpException;
-use KnotLib\Kernel\Bootstrap;
+use knotlib\exception\KnotPhpException;
+use knotlib\kernel\Bootstrap;
 use PHPUnit\Framework\TestCase;
-use KnotLib\Kernel\Test\Classes\BadApplication;
-use KnotLib\Kernel\Test\Classes\TestApplication;
-use KnotLib\Kernel\Test\Classes\ModuleA;
-use KnotLib\Kernel\Test\Classes\ModuleB;
-use KnotLib\Kernel\Test\Classes\PackageX;
-use KnotLib\Kernel\Test\Classes\PackageY;
+use knotlib\kernel\test\classes\BadApplication;
+use knotlib\kernel\test\classes\TestApplication;
+use knotlib\kernel\test\classes\ModuleA;
+use knotlib\kernel\test\classes\ModuleB;
+use knotlib\kernel\test\classes\PackageX;
+use knotlib\kernel\test\classes\PackageY;
 
 final class BootstrapTest extends TestCase
 {
@@ -21,7 +21,7 @@ final class BootstrapTest extends TestCase
     {
         ob_start();
         (new Bootstrap())
-            ->withExceptionHandler(function(KnotPhpException $e){
+            ->withExceptionHandler(function(Throwable $e){
                 echo $e->getMessage();
             })
             ->boot(BadApplication::class);
@@ -33,7 +33,7 @@ final class BootstrapTest extends TestCase
     public function testBoot()
     {
         (new Bootstrap())
-            ->withExceptionHandler(function(KnotPhpException $e){
+            ->withExceptionHandler(function(Throwable $e){
                 echo $e->getMessage();
             })
             ->boot(BadApplication::class, function($app){

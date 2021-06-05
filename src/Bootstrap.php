@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel;
+namespace knotlib\kernel;
 
-use KnotLib\Kernel\ExceptionHandler\CallableExceptionHandler;
-use KnotLib\Kernel\Module\CallableModuleFactory;
+use knotlib\kernel\exceptionhandler\CallableExceptionHandler;
+use knotlib\kernel\module\CallableModuleFactory;
 use Throwable;
 
-use KnotLib\Kernel\ExceptionHandler\ExceptionHandlerInterface;
-use KnotLib\Kernel\Module\ModuleFactoryInterface;
-use KnotLib\Kernel\FileSystem\FileSystemInterface;
-use KnotLib\Kernel\Kernel\ApplicationInterface;
+use knotlib\kernel\exceptionhandler\ExceptionHandlerInterface;
+use knotlib\kernel\module\ModuleFactoryInterface;
+use knotlib\kernel\filesystem\FileSystemInterface;
+use knotlib\kernel\kernel\ApplicationInterface;
 
 class Bootstrap
 {
@@ -151,7 +151,7 @@ class Bootstrap
      * Start application
      *
      * @param string $app_class
-     * @param callable $app_created_callback
+     * @param callable|null $app_created_callback
      *
      * @return self
      */
@@ -205,9 +205,9 @@ class Bootstrap
      *
      * @param Throwable $e     exception to handle
      *
-     * @return self
+     * @return void
      */
-    private function handleExceptionInternal(Throwable $e) : self
+    private function handleExceptionInternal(Throwable $e) : void
     {
         // if error is handled, do nothing after the handler
         if ($this->app){
@@ -218,6 +218,5 @@ class Bootstrap
             $this->ex_handler->handleException($e);
         }
 
-        return $this;
     }
 }

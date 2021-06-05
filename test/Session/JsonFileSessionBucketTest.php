@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace KnotLib\Kernel\Test\Session;
+namespace knotlib\kernel\test\Session;
 
-use KnotLib\Kernel\Session\JsonFileSession;
-use KnotLib\Kernel\Exception\JsonFileSessionException;
-use KnotLib\Kernel\Session\JsonFileSessionBucket;
+use knotlib\kernel\session\JsonFileSession;
+use knotlib\kernel\exception\JsonFileSessionException;
+use knotlib\kernel\session\JsonFileSessionBucket;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
