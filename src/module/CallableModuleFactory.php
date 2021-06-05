@@ -23,7 +23,7 @@ final class CallableModuleFactory implements ModuleFactoryInterface
     /**
      * {@inheritDoc}
      */
-    public function createModule(string $module_class, ApplicationInterface $app)
+    public function createModule(string $module_class, ApplicationInterface $app) : ?ModuleInterface
     {
         $ret = ($this->callable)($module_class, $app);
         if ($ret instanceof ModuleInterface){

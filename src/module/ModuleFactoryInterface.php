@@ -15,5 +15,5 @@ interface ModuleFactoryInterface
      *
      * @return ModuleInterface|null       return null if the factory can not create module instance
      */
-    public function createModule(string $module_class, ApplicationInterface $app);
+    public function createModule(string $module_class, ApplicationInterface $app): ?ModuleInterface;
 }
