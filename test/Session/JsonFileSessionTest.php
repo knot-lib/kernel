@@ -71,7 +71,7 @@ class JsonFileSessionTest extends TestCase
         }
         catch(Exception $e){
             $expected = 'file_get_contents(vfs://root/not_existing.file) failed: file_get_contents(vfs://root/not_existing.file): failed to open stream: "org\bovigo\vfs\vfsStreamWrapper::stream_open" call failed';
-            $this->assertEquals($expected, strtolower($e->getMessage()));
+            $this->assertEquals(strtolower($expected), strtolower($e->getMessage()));
         }
     }
 
